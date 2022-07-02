@@ -9,6 +9,10 @@ on:
 jobs:
   linter:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 3
+      matrix:
+        linters: [black, isort, flake8]
 
     steps:
     - uses: actions/checkout@v3
@@ -17,26 +21,23 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: 3.10.5
-    
-    - uses: Gr1N/setup-poetry@v7
-      with:
-        poetry-version: 1.1.13
-    
-    - uses: actions/cache@v2
-      with:
-        path: ~/.cache/pypoetry/virtualenvs
-        key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
-
-    - name: Install dependencies
+        
+    - name: Install ${{ matrix.linters }}
       run: |
-        poetry export --dev --without-hashes --format requirements.txt --output requirements.txt
-        pip install -r requirements.txt
+        pip install ${{ matrix.linters }}
 
-    - name: Run pre-commit
-      uses: pre-commit/action@v2.0.3
+    - name: Run ${{ matrix.linters }}
+      run: |
+        ${{ matrix.linters }} .
         
   pytest:
     runs-on: ubuntu-latest
+
+    env:
+      SECRET_KEY: key_Only_dev
+      DEBUG: True
+      ALLOWED_HOSTS: =127.0.0.1,localhost,0.0.0.0
+      DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/postgres
     
     services:
       postgres:
@@ -74,10 +75,6 @@ jobs:
       run: |
         poetry export --dev --without-hashes --format requirements.txt --output requirements.txt
         pip install -r requirements.txt
-       
-    - name: Copy example.env .env
-      run: |
-        copy example.env .env
     
     - name: Collect statics
       run: |
