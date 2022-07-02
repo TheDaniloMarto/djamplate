@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "pj001"
+version = "0.1.0"
+description = "A simple web app built with Django"
+authors = ["Danilo Marto de Carvalho <dmcarvalho.dmc@yandex.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "3.10.5"
+Django = "^4.0.5"
+python-decouple = "^3.6"
+dj-database-url = "^0.5.0"
+psycopg2-binary = "^2.9.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+pytest-django = "^4.5.2"
+pytest-cov = "^3.0.0"
+pre-commit = "^2.19.0"
+django-coverage-plugin = "^2.0.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
