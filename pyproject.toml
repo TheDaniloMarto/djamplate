@@ -11,6 +11,7 @@ Django = "^4.0.5"
 python-decouple = "^3.6"
 dj-database-url = "^0.5.0"
 psycopg2-binary = "^2.9.3"
+whitenoise = "^6.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"

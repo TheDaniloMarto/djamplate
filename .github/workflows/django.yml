@@ -10,7 +10,7 @@ jobs:
   linter:
     runs-on: ubuntu-latest
 
-  steps:
+    steps:
     - uses: actions/checkout@v3
 
     - name: Set up Python
@@ -89,4 +89,4 @@ jobs:
 
     - name: Run tests
       run: |
-        python -x .
+        pytest -x .
