@@ -2,9 +2,7 @@
 
 <p align="center">Um projeto Django pré-configurado para realizar o deploy no Heroku.</p>
 
-
-Criei esse projeto com a intenção de agilizar o meu início de desenvolvimento com Django do qual consistem em fazer o deploy no Heroku.     
-
+Criei esse projeto com a intenção de agilizar o meu início de desenvolvimento com Django do qual consistem em fazer o deploy no Heroku.
 
 ## Recursos
 
